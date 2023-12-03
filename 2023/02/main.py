@@ -15,10 +15,6 @@ BAGS = {
 }
 
 
-def read_from_variable(string: str) -> list[str]:
-    return [line.strip() for line in string.splitlines() if line.strip()]
-
-
 def playable(cubes):
     for line in cubes:
         cubes = line.split(", ")
@@ -40,8 +36,7 @@ def fewest(cubes):
         cubes = line.split(", ")
         for cube in cubes:
             count, color = cube.split()
-            if result[color] < int(count):
-                result[color] = int(count)
+            result[color] = max(result[color], int(count))
     return result.values()
 
 
