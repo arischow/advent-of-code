@@ -1,4 +1,5 @@
 from collections import defaultdict
+from utils.text import read_from_file, read_from_variable
 
 example_1 = """
 467..114..
@@ -12,15 +13,6 @@ example_1 = """
 ...$.*....
 .664.598..
 """
-
-
-def read_from_string(string: str) -> list[str]:
-    return [line.strip() for line in string.splitlines() if line.strip()]
-
-
-def read_from_file(filename: str) -> list[str]:
-    with open(filename, "r") as f:
-        return [line.strip() for line in f.readlines() if line.strip()]
 
 
 def is_adjacent_to_symbol(data, line_no, char_no):
@@ -82,7 +74,7 @@ def part2(data):
 
 
 if __name__ == "__main__":
-    assert part1(read_from_string(example_1)) == 4361
+    assert part1(read_from_variable(example_1)) == 4361
     print("part 1:", part1(read_from_file("input.txt")))
-    assert part2(read_from_string(example_1)) == 467835
+    assert part2(read_from_variable(example_1)) == 467835
     print("part 2:", part2(read_from_file("input.txt")))

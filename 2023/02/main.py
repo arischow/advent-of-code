@@ -1,3 +1,5 @@
+from utils.text import read_from_file, read_from_variable
+
 example_1 = """
 Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
 Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
@@ -13,7 +15,7 @@ BAGS = {
 }
 
 
-def read_from_string(string: str) -> list[str]:
+def read_from_variable(string: str) -> list[str]:
     return [line.strip() for line in string.splitlines() if line.strip()]
 
 
@@ -74,7 +76,7 @@ def main2(data):
 
 
 if __name__ == "__main__":
-    assert main(read_from_string(example_1)) == 8
-    # print(main(read_from_file("input.txt")))
-    assert main2(read_from_string(example_1)) == 2286
-    print(main2(read_from_file("input.txt")))
+    assert main(read_from_variable(example_1)) == 8
+    print("part 1:", main(read_from_file("input.txt")))
+    assert main2(read_from_variable(example_1)) == 2286
+    print("part 2:", main2(read_from_file("input.txt")))

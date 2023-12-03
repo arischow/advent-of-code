@@ -1,3 +1,5 @@
+from utils.text import read_from_file, read_from_variable
+
 example_1 = """
 1abc2
 pqr3stu8vwx
@@ -36,15 +38,6 @@ def convert_to_digit(line: str, index: int, possible_strings: list[str]) -> str:
     return ""
 
 
-def read_from_file(filename: str) -> list[str]:
-    with open(filename, "r") as f:
-        return [line for line in f.readlines() if line.strip()]
-
-
-def read_from_string(string: str) -> list[str]:
-    return [line.strip() for line in string.splitlines() if line.strip()]
-
-
 def main(data):
     result = 0
     for line in data:
@@ -71,6 +64,6 @@ def main(data):
 
 
 if __name__ == "__main__":
-    assert main(read_from_string(example_1)) == 142
-    assert main(read_from_string(example_2)) == 281
+    assert main(read_from_variable(example_1)) == 142
+    assert main(read_from_variable(example_2)) == 281
     assert main(read_from_file("input.txt")) == 55218
