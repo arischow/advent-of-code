@@ -44,21 +44,28 @@ def part2(data):
         elf = [x for x in elf.split()]
         me = [x for x in me.split()]
         s = len(set(elf) & set(me))
+
+        # Before adding the original card, we already have x copies of it
         copies = counts[card_id]
+
+        # Add the original card
         counts[card_id] += 1
+
+        # Mapping: the original card can get the next y cards
         card_ranges = list(range(card_id + 1, card_id + s + 1))
         mapping[card_id] = card_ranges
+
+        # Adding copies of cards
         for x in card_ranges:
-            # The original card itself + copies of it
             counts[x] += counts[card_id]
-        print(
-            f"The original Card {card_id} has {s} matching numbers, so can get the next {s} cards: {card_ranges}, plus I have {copies} copies of it, so now I have cards: {counts}"
-        )
+        # print(
+        #     f"The original Card {card_id} has {s} matching numbers, so can get the next {s} cards: {card_ranges}, plus I have {copies} copies of it, so now I have cards: {counts}"
+        # )
     return sum(counts.values())
 
 
 if __name__ == "__main__":
     assert part1(read_from_variable(example_1)) == 13
-    print(part1(read_from_file("input.txt")))
+    print("part 1:", part1(read_from_file("input.txt")))
     assert part2(read_from_variable(example_1)) == 30
-    print(part2(read_from_file("input.txt")))
+    print("part 2:", part2(read_from_file("input.txt")))
