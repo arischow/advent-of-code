@@ -44,6 +44,7 @@ def part2(data):
         elf = [x for x in elf.split()]
         me = [x for x in me.split()]
         s = len(set(elf) & set(me))
+        copies = counts[card_id]
         counts[card_id] += 1
         card_ranges = list(range(card_id + 1, card_id + s + 1))
         mapping[card_id] = card_ranges
@@ -51,7 +52,7 @@ def part2(data):
             # The original card itself + copies of it
             counts[x] += counts[card_id]
         print(
-            f"Card {card_id} has {s} matching numbers, so can get the next {s} cards: {card_ranges}, so now I have cards: {counts}"
+            f"The original Card {card_id} has {s} matching numbers, so can get the next {s} cards: {card_ranges}, plus I have {copies} copies of it, so now I have cards: {counts}"
         )
     return sum(counts.values())
 
