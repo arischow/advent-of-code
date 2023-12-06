@@ -46,23 +46,8 @@ def parse_current_record_part2(data):
     return current_record
 
 
-def part1(data):
-    current_record = parse_current_record_part1(data)
-
-    ways = defaultdict(int)
-    for k, v in current_record.items():
-        for i in range(k + 1):
-            boat = Boat(k)
-            boat.charge(i)
-            boat.travel()
-            if boat.distance > v:
-                ways[k] += 1
-
-    return math.prod(ways.values())
-
-
-def part2(data):
-    current_record = parse_current_record_part2(data)
+def main(parse_func, data):
+    current_record = parse_func(data)
 
     ways = defaultdict(int)
     for k, v in current_record.items():
@@ -77,7 +62,7 @@ def part2(data):
 
 
 if __name__ == "__main__":
-    assert part1(read_from_variable(example_1)) == 288
-    # print(part1(read_from_file("input.txt")))
-    assert (part2(read_from_variable(example_1))) == 71503
-    # print(part2(read_from_file("input.txt")))
+    assert main(parse_current_record_part1, read_from_variable(example_1)) == 288
+    print(main(parse_current_record_part1, read_from_file("input.txt")))
+    assert main(parse_current_record_part2, read_from_variable(example_1)) == 71503
+    # print(main(parse_current_record_part2, read_from_file("input.txt")))
